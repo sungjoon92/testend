@@ -1,14 +1,15 @@
 package kr.co.fmos.theater;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Controller
 public class TheaterDAO {
 
 	// sql연결	
@@ -30,18 +31,4 @@ public class TheaterDAO {
 	public List<TheaterbranchDTO> branchlist(String region_id) {
 		return sqlSession.selectList("theater.branchlist", region_id);
 	}
-//	public List<TheaterbranchDTO> screenlist2(int branch_id) {
-//		return sqlSession.selectList("theater.screenlist2", branch_id);
-//	}
-
-	public List<Map<String, Object>> screenlist(int branch_id) {
-		return sqlSession.selectList("theater.screenlist", branch_id);
-	}
-	
-	public TheaterbranchDTO branchimg(int branch_id) {
-		return sqlSession.selectOne("theater.branchimg", branch_id);
-	}
-	
-	
-	
 }//class end

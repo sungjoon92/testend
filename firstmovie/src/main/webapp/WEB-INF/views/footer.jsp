@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <!-- footer -->
-
     <footer>
         <div class="footer_wrap">
             <p class="tooter_logo"><img src="/images/footer/footerlogo.png" alt=""></p>
@@ -38,7 +37,6 @@
             </div>
         </div>
     </footer>
-    
 </body>
 
 </html>

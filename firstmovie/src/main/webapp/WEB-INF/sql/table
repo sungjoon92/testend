@@ -125,6 +125,7 @@ CREATE TABLE `review` (
 	`review_id`	INT UNSIGNED AUTO_INCREMENT PRIMARY KEY	NOT NULL,
 	`member_id`	VARCHAR(30)	NOT NULL	COMMENT '최대15글자',
 	`movie_id`	VARCHAR(30)	NOT NULL,
+	`movie_genre_id`	TINYINT UNSIGNED	NOT NULL,
 	`movie_review`	TEXT	NOT NULL,
 	`creation_date`	DATETIME	NOT NULL	DEFAULT CURRENT_TIMESTAMP
 );
@@ -163,7 +164,6 @@ CREATE TABLE `region` (
 	`region_id`	VARCHAR(30)  PRIMARY KEY	NOT NULL,
 	`region`	VARCHAR(50)	NOT NULL
 );
-
 
 CREATE TABLE `theater_branch` (
 	`branch_id`	VARCHAR(30)  PRIMARY KEY	NOT NULL,

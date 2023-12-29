@@ -31,42 +31,14 @@ public class TheaterCont {
 //	}//list() end
 //	
 
-//	@RequestMapping("/list.do")
-//	public ModelAndView list(String region_id) {//region_id=region_001, branch_id=19
-//		//System.out.println(region_id);
-//		
-//		//System.out.println(theaterdao.screenlist(branch_id));
-//		
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("theaterlist", theaterdao.regionlist(region_id));
-//		mav.addObject("branchlist", theaterdao.branchlist(region_id));
-//
-//		mav.setViewName("theater/list");
-//		return mav;
-//	}//list() end
-	
-	//지역
 	@RequestMapping("/list.do")
-	public ModelAndView list(String region_id) {//region_id=region_001, branch_id=19
+	public ModelAndView list( String region_id) {
 		//System.out.println(region_id);
-		//System.out.println(theaterdao.screenlist(branch_id));
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("theaterlist", theaterdao.regionlist(region_id));
 		mav.addObject("branchlist", theaterdao.branchlist(region_id));
-		mav.setViewName("theater/list");
-		return mav;
-	}//list() end
-	
-	//지점
-	@RequestMapping("/branchlist.do")
-	public ModelAndView list(String region_id, int branch_id) {//region_id=region_001, branch_id=19
-		//System.out.println(region_id);
-		//System.out.println(theaterdao.screenlist(branch_id));
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("theaterlist", theaterdao.regionlist(region_id));
-		mav.addObject("branchlist", theaterdao.branchlist(region_id));
-		mav.addObject("screenlist", theaterdao.screenlist(branch_id));
-		mav.addObject("branchimg", theaterdao.branchimg(branch_id));
+		
 		mav.setViewName("theater/list");
 		return mav;
 	}//list() end

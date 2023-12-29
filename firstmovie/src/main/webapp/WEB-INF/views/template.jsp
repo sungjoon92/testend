@@ -13,5 +13,5 @@
     	<br>빈칸 채우기용
     	<br>빈칸 채우기용
     	<div style="font-size:50px">footer는 작성한 칸에 맞춰서 위치에 맞게 아래로 내려감</div>
-
+    	
 <%@ include file="footer.jsp" %>

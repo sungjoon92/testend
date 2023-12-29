@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
-import kr.co.fmos.member.MemberDTO;
-
 @Repository
 @Controller
 public class MovieDAO {
@@ -41,12 +39,7 @@ public class MovieDAO {
 	public List<MoviereviewDTO> moviereviewList(String movie_id) {
 		return sqlSession.selectList("movie.review", movie_id);
 	}// movieList() end
-	
-	
-	public int reviewInsert(MoviereviewDTO dto) {
-		return sqlSession.insert("movie.reviewInsert", dto);
-	}//insert() end
-	
+
 //	 맵방식 댓글
 //	 public Map<String, Object> moviereviewList(String movie_id) {
 //			return sqlSession.selectOne("movie.review", movie_id);

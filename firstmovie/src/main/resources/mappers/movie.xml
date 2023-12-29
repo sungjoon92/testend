@@ -22,7 +22,7 @@
 		movie_audience_rating, movie_rank, movie_image, movie_video,
 		director_name, actor_name)
 		VALUES (#{movie_id}, #{movie_genre_id},
-		#{movie_name}, #{movie_running_time}, #{movie_production_year}, #{movie_audience_rating},
+		#{movie_name}, #{movie_running_time}, now(), #{movie_audience_rating},
 		#{movie_rank}, #{movie_image}, #{movie_video}, #{director_name},
 		#{actor_name})
 	</insert>
@@ -30,65 +30,60 @@
 
 	<select id="detail" resultType="kr.co.fmos.movie.MovieDTO"
 		parameterType="String">
-		SELECT
-		m.movie_id,
-		mg.movie_genre_name,
-		m.movie_name,
-		m.movie_running_time,
-		m.movie_production_year,
-		m.movie_audience_rating,
-		m.movie_rank,
-		m.movie_image,
-		m.movie_video,
-		m.director_name,
-		m.actor_name,
-		m.movie_genre_id
-		FROM movie m JOIN movie_genre mg 
-		ON m.movie_genre_id = mg.movie_genre_id
-		WHERE m.movie_id = #{m.movie_id}
+		SELECT movie_id, movie_genre_id,
+		movie_name,
+		movie_running_time, movie_production_year,
+		movie_audience_rating,
+		movie_rank, movie_image, movie_video,
+		director_name, actor_name
+		FROM
+		movie
+		WHERE movie_id = #{movie_id}
 	</select>
+	
+<!-- 사용 가능하지만 selectOne 만 가능 -->
+<!-- 	<select id="review" resultType="kr.co.fmos.movie.MoviereviewDTO" -->
+<!-- 		parameterType="String"> -->
+<!-- 		SELECT review.review_id,review.member_id, review.movie_id, review.movie_review, -->
+<!-- 		review.creation_date, movie.movie_genre_id -->
+<!-- 		FROM movie -->
+<!-- 		JOIN review ON movie.movie_id = review.movie_id -->
+<!-- 		WHERE movie.movie_id = #{movie_id} -->
+<!-- 	</select> -->
 
-	<!-- 사용 가능하지만 selectOne 만 가능 -->
-	<!-- <select id="review" resultType="kr.co.fmos.movie.MoviereviewDTO" -->
-	<!-- parameterType="String"> -->
-	<!-- SELECT review.review_id,review.member_id, review.movie_id, review.movie_review, -->
-	<!-- review.creation_date, movie.movie_genre_id -->
-	<!-- FROM movie -->
-	<!-- JOIN review ON movie.movie_id = review.movie_id -->
-	<!-- WHERE movie.movie_id = #{movie_id} -->
-	<!-- </select> -->
-
-	<!-- <select id="review" resultType="kr.co.fmos.movie.MoviereviewDTO" > 
-		SELECT review.review_id,review.member_id, review.movie_id, review.movie_review, 
-		review.creation_date FROM movie JOIN review ON movie.movie_id = review.movie_id 
-		WHERE movie.movie_id = #{movie_id} </select> -->
-
-	<select id="review" resultType="kr.co.fmos.movie.MoviereviewDTO"
-		parameterType="String">
-		SELECT review.review_id,review.member_id,
-		movie.movie_id, review.movie_review, review.creation_date
+<!-- 	<select id="review" resultType="kr.co.fmos.movie.MoviereviewDTO" >
+		SELECT review.review_id,review.member_id, review.movie_id, review.movie_review,
+		review.creation_date
 		FROM movie
-		JOIN review
+		JOIN review ON movie.movie_id = review.movie_id
+		WHERE movie.movie_id = #{movie_id}
+	</select>
+ -->
+ 
+ 	<select id="review" resultType="kr.co.fmos.movie.MoviereviewDTO" parameterType="String">
+		SELECT review.review_id,review.member_id, movie.movie_id, review.movie_review, review.creation_date
+		FROM movie JOIN review 
 		ON movie.movie_id = review.movie_id
 		WHERE movie.movie_id = #{movie_id}
-		ORDER BY creation_date DESC
 	</select>
-
-	<!-- 맴 형식 -->
-	<!-- <select id="review" resultType="java.util.HashMap" -->
-	<!-- parameterType="String"> -->
-	<!-- SELECT review.review_id,review.member_id, movie.movie_id, review.movie_review, -->
-	<!-- review.creation_date -->
-	<!-- FROM movie -->
-	<!-- JOIN review ON movie.movie_id = review.movie_id -->
-	<!-- WHERE movie.movie_id = #{movie_id} -->
-	<!-- </select> -->
-
-	<!-- 리뷰 추가 -->
-	<insert id="reviewInsert" parameterType="kr.co.fmos.movie.MoviereviewDTO">
-	INSERT INTO review(review_id, member_id, movie_id, movie_review, creation_date)
-	(SELECT NEXTVAL(review_seq), #{member_id}, #{movie_id}, #{movie_review}, now())
 	
-	</insert>
+<!-- 맴 형식 -->
+<!-- 	<select id="review" resultType="java.util.HashMap" -->
+<!-- 		parameterType="String"> -->
+<!-- 		SELECT review.review_id,review.member_id, movie.movie_id, review.movie_review, -->
+<!-- 		review.creation_date -->
+<!-- 		FROM movie -->
+<!-- 		JOIN review ON movie.movie_id = review.movie_id -->
+<!-- 		WHERE movie.movie_id = #{movie_id} -->
+<!-- 	</select> -->
+
+<!-- 리뷰 추가 --> 
+<!-- 	<insert id="reviewInsert" parameterType="kr.co.fmos.movie.MovieDTO"> -->
+<!-- 		INSERT INTO review(review_id, member_id, movie_id, movie_review, creation_date) -->
+<!-- 		(SELECT NEXTVAL(review_seq), #{member_id}, #{movie_id}, #{movie_review}, now()) -->
+<!-- 	</insert> -->
+
+
+
 
 </mapper>

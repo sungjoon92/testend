@@ -10,8 +10,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <!-- 카카오 로그인에 필요한 라이브러리 끝 -->
 
-	<form method="post" id="myForm" action="login.do" onsubmit="return logincheck();"> 
-	 <!-- <form> 시작 -->
+	<form method="post" id="myForm" action="login.do" onsubmit="return logincheck();">
 	 <div class="logwrap">
 	 	<div class="login">
 	 		<a href="/main"><img alt="" src="/images/header/logo.png"></a>

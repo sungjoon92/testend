@@ -58,7 +58,7 @@
 						<li class="active">
 							<a href="/product/detail.do?product_id=${row.product_id}" class="btn_category_product">
 								<span class="best_product_img_wrap">
-									<img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778218049340.jpg">
+									<img src="${row.product_image}" alt="상품 이미지">
 								</span>
 								<span class="best_product_text_wrap">
 									<span class="best_product_text_name">${row.product_name}</span>
@@ -82,7 +82,7 @@
 					<li class="active">
 						<a href="/product/detail.do?product_id=${row.product_id}" class="btn_category_product">
 							<span class="best_product_img_wrap">
-								<img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778218049340.jpg">
+								<img src="${row.product_image}" alt="상품 이미지">
 							</span>
 							<span class="best_product_text_wrap">
 								<span class="best_product_text_name">${row.product_name}</span>
@@ -106,7 +106,7 @@
 						<li class="active">
 							<a href="/product/detail.do?product_id=${row.product_id}" class="btn_category_product">
 								<span class="best_product_img_wrap">
-									<img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778218049340.jpg">
+									<img src="${row.product_image}" alt="상품 이미지">
 								</span>
 								<span class="best_product_text_wrap">
 									<span class="best_product_text_name">${row.product_name}</span>

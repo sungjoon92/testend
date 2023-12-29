@@ -4,11 +4,13 @@
 <link rel="stylesheet" href="/css/store.css">
 <link rel="stylesheet" href="/css/cart.css">
 <script>
-	function cartDelete(cartno){
+	function cartDelete(payment_detail_id){
 		if(confirm("해당 상품을 삭제할까요?")){
 			//또다른 방법<form action='/cart/delete'></form>
 			//또다른 방법(RESTful) location.href='/cart/delete' + cartno;
-			location.href='/cart/delete?cartno=' + cartno;
+			//alert(payment_detail_id);
+			//alert(member_id);
+			location.href='/cart/delete?payment_detail_id=' + payment_detail_id;
 		}//if end
 	}//cartDelete() end
 </script>
@@ -64,11 +66,13 @@
 		</ul>
 	</div>
 	<div class="row">
-		<form name="cartfrm" id="cartfrm" method="post">
-		<input type="hidden" name="cartno" value="${cartno.cart_payment_id}">
+		<form action="delete" name="cartfrm" id="cartfrm" method="get">
+		<input type="hidden" name="PDI" value="${PDI.member_id}">
+		<%-- <input type="hidden" name="PDI" value="${PDI.member_id}"> --%>
 		<table class="com_cart_list_wrap">
 		    <thead>
 		      <tr class="thead_wrap">
+		     	<!-- <th><strong>상품NO</strong></th>  -->
 		        <th><strong>상품명</strong></th>
 		        <th><strong>판매금액</strong></th>
 		        <th><strong>수량</strong></th>
@@ -77,39 +81,21 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr class="tbody_wrap">
-		        <td>${row.payment_price}</td>
-				<td>${row.payment_price}</td>
-				<td>${row.product_count}</td>
-				<td>${row.payment_price}</td>
-				<td>
-					<input type="button" value="삭제" onclick="cartDelete(${row.cart_payment_id})">
-				</td>
-		      </tr>
+		    	<c:forEach items="${list}" var="row">
+			      <tr class="tbody_wrap">
+					<%-- <td>${row.payment_detail_id}</td> --%>
+					<td>${row.product_name}</td>
+					<td><fmt:formatNumber value="${row.product_cost}" pattern="#,###"/>원</td>
+					<td>${row.product_count}개</td>
+					<td><fmt:formatNumber value="${row.product_cost*row.product_count}" pattern="#,###"/>원</td>
+					<td>
+						<input type="button" value="삭제" onclick="cartDelete(${row.payment_detail_id})">
+					</td>															
+			      </tr>														
+		      </c:forEach>
 		    </tbody>
 		</table>
 		<span id="notimsg">장바구니에 담긴 상품은 최대 30일까지 보관됩니다.</span>
-		<table class="com_cart_total_price_wrap" summary="총 상품 금액, 할인금액을 합산한 총 결제예정 금액 표기">
-			<colgroup>
-				<col style="width: 30%">
-				<col style="width: 36%">
-				<col style="width: 34%">
-			</colgroup>
-			<thead>
-		      <tr class="thead_wrap">
-		        <th>총 상품 금액</th>
-		        <th>할인금액</th>
-		        <th>총 결제 예정금액</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <tr class="tbody_wrap">
-		        <td>${row.payment_price}</td>
-				<td>0원</td>
-				<td>${row.payment_price}</td>
-		      </tr>
-		    </tbody>
-		</table>
 			<input type="button" value="구매하기" id="cartButton" onclick="location.href='/order/confirm.do'">
 		</form>
 	</div>

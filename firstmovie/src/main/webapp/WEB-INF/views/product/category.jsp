@@ -15,13 +15,13 @@
    		<div class="category_contents_wrap">
    			<ul class="category_content">
    				<li id="cm1" name="categorymenu">
-   					<a href="/product/category.do?product_category_id=${list.PRODUCT_CATEGORY_ID}">패키지</a>
+   					<a href="/product/category.do?product_category_id=1">패키지</a>
    				</li>
    				<li id="cm2" name="categorymenu">
-   					<a href="/product/category.do?product_category_id=${list.PRODUCT_CATEGORY_ID}">영화관람권</a>
+   					<a href="/product/category.do?product_category_id=2">영화관람권</a>
    				</li>
    				<li id="cm3" name="categorymenu">
-   					<a href="/product/category.do?product_category_id=${list.PRODUCT_CATEGORY_ID}">콤보</a>
+   					<a href="/product/category.do?product_category_id=3">콤보</a>
    				</li>
    				<li id="cm4" name="categorymenu">
    					<a href="#">팝콘</a>
@@ -47,22 +47,32 @@
 	<!-- category_product_wrap 시작 -->
 	<div>
 	<form name="productfrm" id="productfrm" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="product_category_id" value="${category.PRODUCT_CATEGORY_ID}">
+	<input type="hidden" name="product_category_id" value="${product_category_id}">
 		<ul class="category_product_list">
 			<li>
-				<strong class="category_product_title">패키지
-					<%-- <a href="/product/category.do?product_category_id=${list.product_category_id}" class="btn_category_product">  더보기</a> --%>
+				<strong class="category_product_title">
+				 <c:choose >
+			        <c:when test="${product_category_id == 1}">
+			            <p>패키지</p>
+			        </c:when>
+			        <c:when test="${product_category_id == 2}">
+			            <p>영화관람권</p>
+			        </c:when>
+			        <c:otherwise>
+			            <p>콤보</p>
+			        </c:otherwise>
+			    </c:choose>
 				</strong>
 				<ul class="category_product_inner_list">
-				<c:forEach items="${list}" var="row" varStatus="vs">
+				<c:forEach items="${category}" var="row" varStatus="vs">
 						<li class="active">
-							<a href="/product/detail.do?product_id=${row.PRODUCT_ID}" class="btn_category_product">
+							<a href="/product/detail.do?product_id=${row.product_id}" class="btn_category_product">
 								<span class="best_product_img_wrap">
-									<img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778218049340.jpg">
+									<img src="${row.product_image}" alt="상품 이미지">
 								</span>
 								<span class="best_product_text_wrap">
-									<span class="best_product_text_name">${row.PRODUCT_NAME}</span>
-									<span class="best_product_text_price">${row.PRODUCT_COST}</span>
+									<span class="best_product_text_name">${row.product_name}</span>
+									<span class="best_product_text_price"><fmt:formatNumber value="${row.product_cost}" pattern="#,###"/>원</span>
 								</span>
 							</a>
 						</li>

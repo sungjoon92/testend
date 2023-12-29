@@ -1,13 +1,11 @@
 package kr.co.fmos.movie;
 
-import java.sql.Date;
-
-public class MovieDTO extends MoviegenreDTO{
+public class MovieDTO {
 	private String movie_id;				//VARCHAR(30) PRIMARY KEY	NOT NULL,
 	private int movie_genre_id;				//TINYINT UNSIGNED	NOT NULL,
 	private String movie_name;				//VARCHAR(50)	NOT NULL,
-	private int movie_running_time;	    	//SMALLINT UNSIGNED	NOT NULL,
-	private Date movie_production_year;		//DATETIME	NOT NULL,
+	private String movie_running_time;			//SMALLINT UNSIGNED	NOT NULL,
+	private String movie_production_year;	//DATETIME	NOT NULL,
 	private String movie_audience_rating;	//VARCHAR(30)	NOT NULL,
 	private int movie_rank;					//TINYINT	NOT NULL,
 	private String movie_image;				//VARCHAR(255)	NOT NULL,
@@ -32,19 +30,16 @@ public class MovieDTO extends MoviegenreDTO{
 	public void setMovie_name(String movie_name) {
 		this.movie_name = movie_name;
 	}
-
-	public int getMovie_running_time() {
+	public String getMovie_running_time() {
 		return movie_running_time;
 	}
-	public void setMovie_running_time(int movie_running_time) {
+	public void setMovie_running_time(String movie_running_time) {
 		this.movie_running_time = movie_running_time;
 	}
-	
-	
-	public Date getMovie_production_year() {
+	public String getMovie_production_year() {
 		return movie_production_year;
 	}
-	public void setMovie_production_year(Date movie_production_year) {
+	public void setMovie_production_year(String movie_production_year) {
 		this.movie_production_year = movie_production_year;
 	}
 	public String getMovie_audience_rating() {
@@ -92,7 +87,6 @@ public class MovieDTO extends MoviegenreDTO{
 				+ actor_name + "]";
 	}
 	
-
 	
 	
 }

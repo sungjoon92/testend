@@ -14,7 +14,7 @@
 			<ul class="movie_text">
 				<li><h3>${detail.movie_name}</h3></li>
 				<li class='movie_rank'>영화순위 : ${detail.movie_rank}</li>
-				<li>장르아이디 : ${detail.movie_genre_name}</li>
+				<li>장르아이디 : ${detail.movie_genre_id}</li>
 				<li>상영시간 : ${detail.movie_running_time}</li>
 				<li>관람등급 : ${detail.movie_audience_rating}</li>
 				<li>개봉날짜 : ${detail.movie_production_year}</li>
@@ -33,13 +33,13 @@
 	<div class="review_wrap">
 		<div class="review_insert_wrap">
 			<!-- 댓글등록 -->
-			<form name="review_insert_form" id="review_insert_form" method="get" action="/movie/insert.do">
-				<input type="hidden" id="movie_id" name="movie_id" value="${detail.movie_id}">
+			<form name="review_insert_form" id="review_insert_form" method="get">
+
 				<table class="review">
 					<tr>
-						<td><input type="text" name="movie_review"
+						<td><input type="text" name="review_insert_content"
 							id="review_insert_content" placeholder="댓글 내용을 입력해 주세요"></td>
-						<td><input type="submit" name="review_insertBtn"
+						<td><input type="button" name="review_insertBtn"
 							id="review_insertBtn" value="댓글등록"></td>
 					</tr>
 				</table>
@@ -57,7 +57,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${review}" var="row" varStatus="vs">
+					<c:forEach items="${review}" var="row">
 						<tr>
 							<td>${row.member_id}</td>
 							<td>${row.movie_review}</td>

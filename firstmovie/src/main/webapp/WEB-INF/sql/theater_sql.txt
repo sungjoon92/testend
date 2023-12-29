@@ -1,0 +1,17 @@
+-- theater_sql.txt
+
+-- ★극장 전체 SQL문 수정 완료★ --
+SELECT *
+FROM screen SC JOIN screen_movie_information SMI
+ON SC.screen_id = SMI.screen_id JOIN theater_branch TB
+ON region_id = TB.region_id JOIN movie MV
+ON SMI.movie_id = MV.movie_id;
+
+-- ★지점 관련 SQL문 수정 완료★ --
+SELECT DISTINCT region_id, TB.branch_id, branch_name, movie_showing_date, movie_name, movie_genre_id, movie_running_time, movie_production_year, screen_location, screen_seat_count, movie_showing_time
+FROM screen SC JOIN screen_movie_information SMI
+ON SC.screen_id = SMI.screen_id JOIN theater_branch TB
+ON region_id = TB.region_id JOIN movie MV
+ON SMI.movie_id = MV.movie_id
+WHERE TB.branch_id = 21
+ORDER BY screen_location;
